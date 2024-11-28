@@ -2,11 +2,16 @@ pipeline {
 
     agent any
 
+    parameters {
+        choice choices: ['chrome', 'firefox'], description: 'Select a browser to execute the test suites.', name: 'BROWSER'
+        choice choices: ['1', '2', '3', '4', '5'], description: 'Select the number of threads', name: 'THREAD_COUNT'
+    }
+
     stages{
 
         stage('Start Selenium Grid'){
             steps{
-                bat "docker compose -f grid.yaml up -d"
+                bat "docker compose -f grid.yaml up --scale ${params.BROWSER}=2 -d"
             }
         }
 
