@@ -1,21 +1,12 @@
 services:
-  signup-suite:
+  suite:
     image: javierol97/selenium-grid-docker
     environment:
     - BROWSER
     - HUB_HOST=hub
     - THREAD_COUNT
-    - TEST_SUITE=signup-test.xml
+    - TEST_SUITE=${TEST_SUITE}.xml
     volumes:
-    - ./output/signup-test:/home/selenium-docker/test-output
-  chill-suite:
-    image: javierol97/selenium-grid-docker
-    environment:
-    - BROWSER
-    - HUB_HOST=hub
-    - THREAD_COUNT
-    - TEST_SUITE=chill-suite.xml
-    volumes:
-    - ./output/chill-suite:/home/selenium-docker/test-output
+    - ./output/${TEST_SUITE}:/home/selenium-docker/test-output
 
 

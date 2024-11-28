@@ -5,6 +5,7 @@ pipeline {
     parameters {
         choice choices: ['chrome', 'firefox'], description: 'Select a browser to execute the test suites.', name: 'BROWSER'
         choice choices: ['1', '2', '3', '4', '5'], description: 'Select the number of threads', name: 'THREAD_COUNT'
+        choice choices: ['signup-test', 'chill-suite'], description: 'Select a suite to run', name: 'TEST_SUITE'
     }
 
     stages{
