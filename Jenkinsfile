@@ -15,4 +15,5 @@ pipeline {
                 bat "docker compose down"
             }
         }
+    }
 }
