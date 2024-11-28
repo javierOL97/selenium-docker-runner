@@ -4,16 +4,23 @@ pipeline {
 
     stages{
 
-        stage('Run Test'){
+        stage('Start Selenium Grid'){
             steps{
-                bat "docker compose up"
+                bat "docker compose -f grid.yaml up -d"
             }
         }
 
-        stage('Turn down Selenium Grid'){
+        stage('Run Test Suites'){
             steps{
-                bat "docker compose down"
+                bat "docker compose -f test-suites.yaml up"
             }
+        }
+    }
+
+    post{
+        always{
+            bat "docker compose -f grid.yaml down"
+            bat "docker compose -f test-suites.yaml down"
         }
     }
 }
