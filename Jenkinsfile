@@ -18,7 +18,7 @@ pipeline {
 
         stage('Run Test Suites'){
             steps{
-                bat "docker compose -f test-suites.yaml up"
+                bat "docker compose -f test-suites.yaml up --pull=always"
                 script {
                     if(fileExists("output/${params.TEST_SUITE}/testng-failed.xml")) {
                         error('failed test scenario')
